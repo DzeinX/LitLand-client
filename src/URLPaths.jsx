@@ -1,18 +1,35 @@
-import {createBrowserRouter} from "react-router-dom";
-import App from "./App";
-import React from "react";
-import {HomePage} from "./pages/HomePage";
-import {AddBookPage} from "./pages/AddBookPage";
+import {createBrowserRouter} from "react-router-dom"
+import React from "react"
+import {HomePage} from "./pages/HomePage"
+import {AddBookPage} from "./pages/AddBookPage"
+import {BookPage} from "./pages/BookPage"
+import {CartPage} from "./pages/CartPage"
+import {NotFoundPage} from "./pages/NotFoundPage"
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <HomePage />,
-        errorElement: <h1>Oops, have an error 404</h1>
+        element: <HomePage/>,
+        errorElement: <NotFoundPage/>
     },
     {
-        path: "/add-book",
-        element: <AddBookPage />,
-        errorElement: <h1>Oops, have an error 404</h1>
+        path: "/employee/add-book",
+        element: <AddBookPage/>,
+        errorElement: <NotFoundPage/>
+    },
+    {
+        path: "/book/:hash",
+        element: <BookPage/>,
+        errorElement: <NotFoundPage/>
+    },
+    {
+        path: "/cart",
+        element: <CartPage/>,
+        errorElement: <NotFoundPage/>
+    },
+    {
+        path: "/not-found",
+        element: <NotFoundPage/>,
+        errorElement: <NotFoundPage/>
     },
 ]);
