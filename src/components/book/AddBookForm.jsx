@@ -62,7 +62,7 @@ export const AddBookForm = ({setMessage}) => {
             Это новинка <input type="checkbox" name="isNew" placeholder="Новинка"/>
         </label>
         <input type="number" name="storageAmount" placeholder="На складе" required/>
-        <input type="text" name="description" placeholder="Описание"/>
+        <textarea style={{resize: 'vertical'}} name="description" placeholder="Описание"/>
         <input type="text" accept="pdf,epub" name="fileName" placeholder="Файл книги"/>
         <input type="text" accept="jpg,png" name="coverName" placeholder="Файл обложки"/>
         <input type="number" name="publicationYear" placeholder="Год издания" required/>
