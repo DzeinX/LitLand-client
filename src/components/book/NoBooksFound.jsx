@@ -4,7 +4,7 @@ export const NoBooksFound = () => {
     return <div className="no-books-found">
         <div>{WE_HAVE_NO_BOOKS}</div>
         <div className="solution">
-            <a href="/employee/add-book">Добавьте перую книгу</a>
+            <a href="/employee/add-book">Добавить перую книгу</a>
         </div>
     </div>
 }
