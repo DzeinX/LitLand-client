@@ -1,7 +1,8 @@
-import {useDispatch} from "react-redux";
-import {UpdateCart} from "../../store/reducers/cartReducer";
+import {useDispatch} from "react-redux"
+import {UpdateCart} from "../../store/reducers/cartReducer"
+import styles from "../../static/css/AddOneBookInTheCart.module.css"
 
-export const AddOneBookInTheCart = ({book, cartReducer, setCart, setFullPrice}) => {
+export const AddOneBookInTheCart = ({book, cartReducer, setCart, setFullPrice, setMessage, setTypeMessage}) => {
     const dispatch = useDispatch();
 
     const addOne = () => {
@@ -28,10 +29,16 @@ export const AddOneBookInTheCart = ({book, cartReducer, setCart, setFullPrice}) 
                     setCart(data.book)
                     setFullPrice((prev) => prev + data.book.price)
                 } else {
-                    console.log(data.message) // TODO - сделать вывод сообщения
+                    setMessage(data.message)
+                    setTypeMessage("warning")
                 }
             })
     }
 
-    return <button type="button" onClick={addOne}>+</button>
+    return <button
+        type="button"
+        onClick={addOne}
+        className={styles["add-one"]}
+        title="Больше"
+    >+</button>
 }

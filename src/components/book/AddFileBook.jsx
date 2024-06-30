@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
 
-export const AddFileBook = ({setMessage, bookHash, setLevel}) => {
+export const AddFileBook = ({setMessage, bookHash, setLevel, setTypeMessage}) => {
     const buttonCoverRef = useRef();
     const [file, setFile] = useState("");
 
@@ -25,9 +25,11 @@ export const AddFileBook = ({setMessage, bookHash, setLevel}) => {
             .then(data => {
                 if (data.verdict === "SUCCESS") {
                     setMessage("Файл успешно загружен")
+                    setTypeMessage("success")
                     setLevel(3)
                 } else {
                     setMessage("Не удалось загрузить файл, возможно, не тот формат (допустимые форматы: pdf, docx, doc, epub, fb2, mobi, kf8, azw, lrf)")
+                    setTypeMessage("warning")
                 }
             }).finally(() => buttonCoverRef.current.innerHTML = "Загрузить")
     }

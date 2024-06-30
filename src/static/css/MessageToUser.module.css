@@ -1,0 +1,46 @@
+.message {
+    position: absolute;
+    top: 80px;
+    right: 40px;
+
+    width: 300px;
+    padding: 10px 30px 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.8s;
+    z-index: 20;
+}
+
+.message.error {
+    background-color: rgba(255, 121, 121, 1.0);
+    color: rgba(235, 77, 75, 1.0);
+}
+
+.message.success {
+    background-color: rgba(120, 224, 143, 1.0);
+    color: rgba(5, 196, 107, 1.0);
+}
+
+.message.warning {
+    background-color: rgba(246, 229, 141, 1.0);
+    color: rgba(249, 202, 36, 1.0);
+}
+
+.message.close {
+    opacity: 0;
+}
+
+.message-box {
+    position: relative;
+}
+
+.cross {
+    position: absolute;
+    right: -10px;
+    top: 0;
+}
+
+.text {
+
+}

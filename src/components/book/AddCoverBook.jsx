@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
 
-export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibility}) => {
+export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibility, setTypeMessage}) => {
     const buttonCoverRef = useRef();
     const [file, setFile] = useState("");
 
@@ -25,11 +25,13 @@ export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibil
             .then(data => {
                 if (data.verdict === "SUCCESS") {
                     setMessage("Обложка успешно загружена")
+                    setTypeMessage("success")
                     bookHash.current = ""
                     setLevel(1)
                     setBookTypeVisibility(true)
                 } else {
                     setMessage("Не удалось загрузить обложку, возможно, не тот формат (допустимые форматы: jpg, png, ico)")
+                    setTypeMessage("warning")
                 }
             }).finally(() => buttonCoverRef.current.innerHTML = "Загрузить")
     }

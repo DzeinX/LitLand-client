@@ -1,0 +1,13 @@
+.book-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px
+}
+
+.sticky-panel {
+    width: 40%;
+}
+
+.book-info-content {
+    width: calc(60% - 60px);
+}

@@ -1,7 +1,7 @@
 import {useRef} from "react";
 import {useSelector} from "react-redux";
 
-export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, setBookTypeVisibility}) => {
+export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, setBookTypeVisibility, setTypeMessage}) => {
     const buttonBookRef = useRef();
     const languageReducer = useSelector(state => state.languageReducer)
 
@@ -38,11 +38,13 @@ export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, se
             .then(data => {
                 if (data.verdict === "SUCCESS") {
                     setMessage("Успешно добавлена")
+                    setTypeMessage("success")
                     bookHash.current = data.hash
                     setLevel(2)
                     setBookTypeVisibility(false)
                 } else {
                     setMessage("Ошибка добавления книги")
+                    setTypeMessage("error")
                 }
             }).finally(() => buttonBookRef.current.innerHTML = "Создать книгу")
     }

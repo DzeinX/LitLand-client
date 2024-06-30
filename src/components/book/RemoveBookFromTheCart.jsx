@@ -1,7 +1,8 @@
-import {useDispatch} from "react-redux";
-import {UpdateCart} from "../../store/reducers/cartReducer";
+import {useDispatch} from "react-redux"
+import {UpdateCart} from "../../store/reducers/cartReducer"
+import styles from "../../static/css/RemoveBookFromTheCart.module.css"
 
-export const RemoveBookFromTheCart = ({book, cartReducer, setCart, setCartLength, setFullPrice}) => {
+export const RemoveBookFromTheCart = ({book, cartReducer, setCart, setCartLength, setFullPrice, setMessage, setTypeMessage}) => {
     const dispatch = useDispatch();
 
     const removeFromTheCart = () => {
@@ -31,11 +32,17 @@ export const RemoveBookFromTheCart = ({book, cartReducer, setCart, setCartLength
                     setCartLength(cartReducer.length)
                     setFullPrice((prev) => prev - sum)
                 } else {
-                    console.log(data.message) // TODO - сделать вывод сообщения
+                    setMessage(data.message)
+                    setTypeMessage("warning")
                 }
             })
 
     }
 
-    return <button type="button" onClick={removeFromTheCart}>Удалить из корзины</button>
+    return <button
+        type="button"
+        onClick={removeFromTheCart}
+        className={styles["remove-all"]}
+        title="Удалить из корзины"
+    >Удалить из корзины</button>
 }

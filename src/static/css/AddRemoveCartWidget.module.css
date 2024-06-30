@@ -1,0 +1,28 @@
+.amount-control {
+    display: flex;
+}
+
+.amount {
+    padding: 10px 0;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: rgba(39, 174, 96, 1.0);
+    cursor: default;
+}
+
+.amount-widget {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.amount-widget > * {
+    width: 33%;
+
+}
+
+.remove-widget {
+    width: 50%;
+}

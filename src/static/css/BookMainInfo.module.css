@@ -1,0 +1,49 @@
+.book-main-info {
+    position: relative;
+}
+
+.book-name {
+    width: calc(100% - 60px);
+    font-size: 2rem;
+    font-weight: 400;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.book-authors {
+    text-align: right;
+    margin-top: 1rem;
+    width: calc(100% - 60px);
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+
+.book-rating {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #ccc;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: default;
+    color: goldenrod;
+}
+
+.book-rating::after {
+    content: '';
+    margin-left: 4px;
+    display: inline-block;
+    background-image: url(../../static/img/star.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+    border: none;
+    background-color: #fff;
+}

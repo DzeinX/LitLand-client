@@ -8,7 +8,7 @@ export const TableBooks = ({books}) => {
     const languageReducer = useSelector(state => state.languageReducer)
     const navigate = useNavigate()
 
-    return <table style={{border: '1px solid #ccc', width: '90%', margin: '0 auto', borderCollapse: 'collapse'}}>
+    return <table style={{border: '1px solid #ccc', width: '100%', borderCollapse: 'collapse'}}>
         <thead style={{backgroundColor: 'goldenrod', color: 'white'}}>
         <tr style={{height: "30px"}}>
             <th>Название</th>

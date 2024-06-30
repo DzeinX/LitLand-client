@@ -1,7 +1,8 @@
 import {UpdateCart} from "../../store/reducers/cartReducer";
 import {useDispatch} from "react-redux";
+import styles from "../../static/css/RemoveOneBookFromTheCart.module.css"
 
-export const RemoveOneBookFromTheCart = ({book, cartReducer, setCart, cart, setCartLength, setFullPrice}) => {
+export const RemoveOneBookFromTheCart = ({book, cartReducer, setCart, cart, setCartLength, setFullPrice, setMessage, setTypeMessage}) => {
     const dispatch = useDispatch();
 
     const removeOne = () => {
@@ -32,7 +33,8 @@ export const RemoveOneBookFromTheCart = ({book, cartReducer, setCart, cart, setC
                         setCartLength(cartReducer.length)
                         setFullPrice((prev) => prev - sum)
                     } else {
-                        console.log(data.message) // TODO - сделать вывод сообщения
+                        setMessage(data.message)
+                        setTypeMessage("warning")
                     }
                 })
         } else {
@@ -59,11 +61,17 @@ export const RemoveOneBookFromTheCart = ({book, cartReducer, setCart, cart, setC
                         setCart(data.book)
                         setFullPrice((prev) => prev - data.book.price)
                     } else {
-                        console.log(data.message) // TODO - сделать вывод сообщения
+                        setMessage(data.message)
+                        setTypeMessage("warning")
                     }
                 })
         }
     }
 
-    return <button type="button" onClick={removeOne}>-</button>
+    return <button
+        type="button"
+        onClick={removeOne}
+        className={styles["remove-one"]}
+        title="Меньше"
+    >—</button>
 }

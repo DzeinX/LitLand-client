@@ -1,0 +1,39 @@
+.book-cover {
+    position: relative;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #ccc;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.book-cover.highlight {
+    box-shadow: 0 0 12px rgba(218, 165, 32, 0.75);
+}
+
+.book-cover:hover .is-new {
+    opacity: 0;
+}
+
+.image-root {
+    position: relative;
+    width: 100%;
+    z-index: 9;
+}
+
+.is-new {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+
+    color: goldenrod;
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #ccc;
+    background: #fff;
+    z-index: 10;
+
+    transition: 0.1s;
+}

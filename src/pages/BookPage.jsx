@@ -2,8 +2,9 @@ import {useNavigate, useParams} from "react-router-dom"
 import {memo, useEffect, useRef, useState} from "react"
 import {Preloader} from "../components/Preloader"
 import {BookInfo} from "../components/book/BookInfo"
-import {Header} from "../components/Header";
-import {useSelector} from "react-redux";
+import {Header} from "../components/Header"
+import {useSelector} from "react-redux"
+import styles from "../static/css/Page.module.css"
 
 export const BookPage = memo(() => {
     const cartReducer = useSelector(state => state.cartReducer)
@@ -28,7 +29,7 @@ export const BookPage = memo(() => {
             })
     }, [navigate]);
 
-    return <div className="book-page">
+    return <div className={styles["page"]}>
         <Header cartLength={cartLength} />
         {book === null
             ? <Preloader/>

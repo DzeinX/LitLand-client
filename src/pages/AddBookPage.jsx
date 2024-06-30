@@ -3,14 +3,16 @@ import {MessageToUser} from "../components/MessageToUser";
 import {AddBookForm} from "../components/book/AddBookForm";
 import {useSelector} from "react-redux";
 import {Header} from "../components/Header";
+import styles from "../static/css/Page.module.css";
 
 export const AddBookPage = () => {
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState("");
+    const [typeMessage, setTypeMessage] = useState("warning");
     const cartReducer = useSelector(state => state.cartReducer)
 
-    return <div>
+    return <div className={styles["page"]}>
         <Header cartLength={cartReducer.length}/>
-        <MessageToUser message={message}/>
-        <AddBookForm setMessage={setMessage}/>
+        <MessageToUser message={message} setMessage={setMessage} type={typeMessage}/>
+        <AddBookForm setMessage={setMessage} setTypeMessage={setTypeMessage}/>
     </div>;
 }

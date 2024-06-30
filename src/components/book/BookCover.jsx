@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import styles from "../../static/css/BookCover.module.css"
 
 export const BookCover = ({size, book}) => {
     const [img, setImg] = useState("");
@@ -19,8 +20,8 @@ export const BookCover = ({size, book}) => {
             })
     }, []);
 
-    return <div className={"book-cover " + size}>
-        <img src={img} alt="Обложка"/>
-        <span className="is-new">{book.isNew ? "Новинка" : ""}</span>
+    return <div className={styles["book-cover"] + " " + size + " " + (book.isNew ? styles["highlight"] : "")}>
+        <img className={styles["image-root"]} src={img} alt="Обложка"/>
+        {book.isNew && <div className={styles["is-new"]}>Новинка</div>}
     </div>
 }

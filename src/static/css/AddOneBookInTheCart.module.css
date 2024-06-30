@@ -1,0 +1,16 @@
+.add-one {
+    padding: 10px 0;
+    outline: none;
+    border-radius: 0 10px 10px 0;
+    border: none;
+    background: rgba(39, 174, 96, 1.0);
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.add-one:hover {
+    background: rgba(39, 174, 96, 0.8);
+}

@@ -1,7 +1,8 @@
 import {UpdateCart} from "../../store/reducers/cartReducer"
 import {useDispatch} from "react-redux"
+import styles from "../../static/css/FirstInTheCart.module.css"
 
-export const FirstInTheCart = ({book, cartReducer, setCart, setCartLength}) => {
+export const FirstInTheCart = ({book, cartReducer, setCart, setCartLength, setMessage, setTypeMessage}) => {
     const dispatch = useDispatch();
 
     const addToCart = () => {
@@ -23,10 +24,11 @@ export const FirstInTheCart = ({book, cartReducer, setCart, setCartLength}) => {
                     setCart(data.book)
                     setCartLength(cartReducer.length)
                 } else {
-                    console.log(data.message) // TODO - сделать вывод сообщения
+                    setMessage(data.message)
+                    setTypeMessage("warning")
                 }
             })
     }
 
-    return <button type="button" onClick={addToCart}>Купить за <span>{book.price}</span> руб</button>
+    return <button type="button" className={styles["first-in-the-cart"]} onClick={addToCart}>Добавить в корзину</button>
 }
