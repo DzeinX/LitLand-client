@@ -8,7 +8,20 @@ const UPDATE_CART = "ADD_TO_CART"
 //     return cartEntry
 // }
 
-export const cartReducer = (state = [], action) => {
+let booksInCart = []
+
+await fetch('http://localhost:9090/cart', {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/',
+    }
+}).then(response => response.json())
+    .then(data => booksInCart = data)
+
+export const cartReducer = (state = booksInCart, action) => {
     switch (action.type) {
         case UPDATE_CART:
             return action.payload

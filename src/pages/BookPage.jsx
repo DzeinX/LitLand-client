@@ -2,8 +2,12 @@ import {useNavigate, useParams} from "react-router-dom"
 import {memo, useEffect, useRef, useState} from "react"
 import {Preloader} from "../components/Preloader"
 import {BookInfo} from "../components/book/BookInfo"
+import {Header} from "../components/Header";
+import {useSelector} from "react-redux";
 
 export const BookPage = memo(() => {
+    const cartReducer = useSelector(state => state.cartReducer)
+    const [cartLength, setCartLength] = useState(cartReducer.length)
     const hashRef = useRef(useParams().hash)
     const [book, setBook] = useState(null)
     const navigate = useNavigate()
@@ -24,12 +28,13 @@ export const BookPage = memo(() => {
             })
     }, [navigate]);
 
-    return <>
+    return <div className="book-page">
+        <Header cartLength={cartLength} />
         {book === null
             ? <Preloader/>
             : <div>
-                <BookInfo book={book}/>
+                <BookInfo book={book} cartReducer={cartReducer} setCartLength={setCartLength}/>
             </div>
         }
-    </>
+    </div>
 })
