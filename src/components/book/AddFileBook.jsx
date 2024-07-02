@@ -1,4 +1,5 @@
-import {useRef, useState} from "react";
+import {useRef, useState} from "react"
+import styles from "../../static/css/AddFileBook.module.css"
 
 export const AddFileBook = ({setMessage, bookHash, setLevel, setTypeMessage}) => {
     const buttonCoverRef = useRef();
@@ -38,10 +39,10 @@ export const AddFileBook = ({setMessage, bookHash, setLevel, setTypeMessage}) =>
         if (e.target.files && e.target.files[0]) setFile(e.target.files[0]);
     }
 
-    return <div>
-        <div className="title">Загрузите файл книги</div>
+    return <div className={styles["add-file-book"]}>
+        <div className={styles["title"]}>Загрузите файл книги</div>
         <form onSubmit={submitFormCover} method="POST" encType="multipart/form-data">
-            <input type="file" accept="pdf,docx,doc,epub,fb2,mobi,kf8,azw,lrf" name="fileName" required
+            <input type="file" accept="application/pdf, application/msword, application/epub, application/fb2, application/mobi, application/kf8, application/azw, application/lrf" name="fileName" required
                    onChange={handleFileChange}/>
             <button ref={buttonCoverRef} type="submit">Загрузить</button>
         </form>

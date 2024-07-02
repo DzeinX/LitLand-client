@@ -1,5 +1,6 @@
-import {useRef} from "react";
-import {useSelector} from "react-redux";
+import {useRef} from "react"
+import {useSelector} from "react-redux"
+import styles from "../../static/css/FillNecessaryInfoDigitalBook.module.css"
 
 export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, setBookTypeVisibility, setTypeMessage}) => {
     const buttonBookRef = useRef();
@@ -49,8 +50,11 @@ export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, se
             }).finally(() => buttonBookRef.current.innerHTML = "Создать книгу")
     }
 
-    return <form onSubmit={submitFormBook} method="POST"
-                 style={{display: 'flex', flexDirection: 'column', gap: "10px", width: "50%", margin: "0 auto"}}>
+    return <form
+        onSubmit={submitFormBook}
+        method="POST"
+        className={styles["fill-necessary-info-digital-book"]}
+    >
         <input type="text" name="name" placeholder="Название книги" required/>
         <select name="language" required>
             {
@@ -62,9 +66,6 @@ export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, se
         </select>
         <input type="number" name="price" placeholder="Цена" required/>
         <input type="number" name="pages" placeholder="Количество страниц" required/>
-        <label>
-            Это новинка <input type="checkbox" name="isNew" placeholder="Новинка"/>
-        </label>
         <textarea style={{resize: 'vertical'}} name="description" placeholder="Описание"/>
         <input type="number" name="publicationYear" placeholder="Год издания" required/>
         <input type="number" name="rating" placeholder="Рейтинг"/>
@@ -72,6 +73,10 @@ export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, se
         <input type="text" name="genre" placeholder="Жанр"/>
         <input type="text" name="authors" placeholder="Автор" required/>
         <input type="text" name="ISBNNumber" placeholder="Номер ISBN"/>
+        <label>
+            <span>Это новинка</span>
+            <input type="checkbox" name="isNew" placeholder="Новинка"/>
+        </label>
         <button ref={buttonBookRef} type="submit">Создать книгу</button>
     </form>
 }

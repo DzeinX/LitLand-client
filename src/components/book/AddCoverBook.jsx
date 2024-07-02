@@ -1,4 +1,5 @@
-import {useRef, useState} from "react";
+import {useRef, useState} from "react"
+import styles from "../../static/css/AddCoverBook.module.css"
 
 export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibility, setTypeMessage}) => {
     const buttonCoverRef = useRef();
@@ -40,11 +41,11 @@ export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibil
         if (e.target.files && e.target.files[0]) setFile(e.target.files[0]);
     }
 
-    return <div>
-        <div className="title">А теперь, пришло время добавить обложку</div>
+    return <div className={styles["add-cover-book"]}>
+        <div className={styles["title"]}>А теперь, пришло время добавить обложку</div>
         <form onSubmit={submitFormCover} method="POST" encType="multipart/form-data">
             {/*<input type="file" accept="pdf,epub" name="fileName" placeholder="Файл книги"/>*/}
-            <input type="file" accept="jpg,png" name="coverName" placeholder="Файл обложки" required
+            <input type="file" accept="image/jpg, image/png" name="coverName" placeholder="Файл обложки" required
                    onChange={handleFileChange}/>
             <button ref={buttonCoverRef} type="submit">Загрузить</button>
         </form>

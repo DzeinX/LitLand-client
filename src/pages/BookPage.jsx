@@ -5,6 +5,7 @@ import {BookInfo} from "../components/book/BookInfo"
 import {Header} from "../components/Header"
 import {useSelector} from "react-redux"
 import styles from "../static/css/Page.module.css"
+import {Footer} from "../components/Footer";
 
 export const BookPage = memo(() => {
     const cartReducer = useSelector(state => state.cartReducer)
@@ -37,5 +38,6 @@ export const BookPage = memo(() => {
                 <BookInfo book={book} cartReducer={cartReducer} setCartLength={setCartLength}/>
             </div>
         }
+        <Footer/>
     </div>
 })

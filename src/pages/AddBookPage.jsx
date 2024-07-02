@@ -4,6 +4,7 @@ import {AddBookForm} from "../components/book/AddBookForm";
 import {useSelector} from "react-redux";
 import {Header} from "../components/Header";
 import styles from "../static/css/Page.module.css";
+import {Footer} from "../components/Footer";
 
 export const AddBookPage = () => {
     const [message, setMessage] = useState("");
@@ -14,5 +15,6 @@ export const AddBookPage = () => {
         <Header cartLength={cartReducer.length}/>
         <MessageToUser message={message} setMessage={setMessage} type={typeMessage}/>
         <AddBookForm setMessage={setMessage} setTypeMessage={setTypeMessage}/>
+        <Footer/>
     </div>;
 }

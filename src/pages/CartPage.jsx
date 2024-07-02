@@ -4,6 +4,7 @@ import {useState} from "react"
 import {BookAmountControl} from "../components/book/BookAmountControl";
 import styles from "../static/css/Page.module.css";
 import {MessageToUser} from "../components/MessageToUser";
+import {Footer} from "../components/Footer";
 
 export const CartPage = () => {
     const cartReducer = useSelector(state => state.cartReducer)
@@ -24,16 +25,19 @@ export const CartPage = () => {
         {
             cartReducer.map((book, index) => {
                 return <BookAmountControl
-                        book={book}
-                        cartReducer={cartReducer}
-                        setCartLength={setCartLength}
-                        setFullPrice={setFullPrice}
-                        setMessage={setMessage}
-                        setTypeMessage={setTypeMessage}
-                    />
+                    book={book}
+                    cartReducer={cartReducer}
+                    setCartLength={setCartLength}
+                    setFullPrice={setFullPrice}
+                    setMessage={setMessage}
+                    setTypeMessage={setTypeMessage}
+                />
             })
         }
-        {cartReducer.length === 0 && "Вы ещё не выбрали книги"}
-        {cartReducer.length !== 0 && ("ИТОГО " + fullPrice + " руб")}
+        <div className={styles["total"]} style={{fontSize: "1.5rem", textAlign: "right", marginTop: "40px", fontWeight: "bold"}}>
+            {cartReducer.length === 0 && "Вы ещё не выбрали книги"}
+            {cartReducer.length !== 0 && ("ИТОГО " + fullPrice + " руб")}
+        </div>
+        <Footer/>
     </div>
 }

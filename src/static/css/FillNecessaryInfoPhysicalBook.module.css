@@ -1,0 +1,57 @@
+.fill-necessary-info-physical-book {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.fill-necessary-info-physical-book > input,
+.fill-necessary-info-physical-book > select,
+.fill-necessary-info-physical-book > textarea,
+.fill-necessary-info-physical-book > label {
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid rgba(220, 221, 225,1.0);
+    outline: none;
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.fill-necessary-info-physical-book > label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fill-necessary-info-physical-book > label span {
+    font-weight: 400;
+    color: #777;
+}
+
+.fill-necessary-info-physical-book > label input {
+    background: red;
+}
+
+.fill-necessary-info-physical-book > textarea {
+    height: 64px;
+    padding: 10px 15px;
+}
+
+.fill-necessary-info-physical-book > button {
+    margin-top: 20px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: rgba(39, 174, 96, 1.0);
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.fill-necessary-info-physical-book > button:hover {
+    background: rgba(39, 174, 96, 0.9);
+}

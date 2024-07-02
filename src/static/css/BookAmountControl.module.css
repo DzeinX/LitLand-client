@@ -1,0 +1,44 @@
+.book-purchase {
+    border-radius: 10px;
+    border: 1px solid rgba(220, 221, 225, 1.0);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.book-purchase a {
+    display: block;
+    text-decoration: none;
+    color: #444;
+    margin-bottom: 30px;
+}
+
+.book-purchase a > div:first-child {
+    font-size: 1.5rem;
+}
+
+.book-purchase a > div:last-child {
+    font-size: 1.2rem;
+    font-weight: 100;
+    text-align: right;
+}
+
+.amount-controller {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.widget {
+    width: 35%;
+}
+
+.book-total {
+    width: 65%;
+    text-align: right;
+    font-size: 1.3rem;
+    font-weight: 100;
+}
+
+.book-total span {
+    font-weight: 400;
+}

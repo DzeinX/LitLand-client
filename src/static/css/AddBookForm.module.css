@@ -1,0 +1,45 @@
+.add-book-form {
+
+}
+
+.book-types {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.types {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-bottom: 40px;
+
+}
+
+.type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 42px;
+    cursor: pointer;
+    width: 50%;
+    background-color: rgba(245, 246, 250,1.0);
+    color: #444;
+    transition: 0.2s;
+}
+
+.type:first-child {
+    border-radius: 10px 0 0 10px;
+}
+.type:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.type.active {
+    background-color: rgba(220, 221, 225,1.0);
+}
+
+.form-container {
+
+}

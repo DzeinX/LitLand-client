@@ -1,0 +1,43 @@
+.add-cover-book {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 100;
+    margin-bottom: 20px;
+}
+
+.add-cover-book > form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-cover-book > form > input {
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid rgba(220, 221, 225,1.0);
+    outline: none;
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.add-cover-book > form > button {
+    margin-top: 20px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: rgba(39, 174, 96, 1.0);
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.add-cover-book > form > button:hover {
+    background: rgba(39, 174, 96, 0.9);
+}
