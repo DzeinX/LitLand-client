@@ -4,6 +4,7 @@ import styles from "../../static/css/BookCover.module.css"
 export const BookCover = ({size, book}) => {
     const [img, setImg] = useState("");
 
+
     useEffect(() => {
         fetch("http://localhost:9090/book/image/" + (book.coverName === null ? "default.png" : book.coverName), {
             method: 'POST',
@@ -18,7 +19,7 @@ export const BookCover = ({size, book}) => {
             .then((blob) => {
                 setImg(URL.createObjectURL(blob))
             })
-    }, []);
+    }, [book.coverName]);
 
     return <div className={styles["book-cover"] + " " + size + " " + (book.isNew ? styles["highlight"] : "")}>
         <img className={styles["image-root"]} src={img} alt="Обложка"/>

@@ -1,5 +1,5 @@
 import styles from "../static/css/MessageToUser.module.css"
-import {useState} from "react";
+import {useEffect, useState} from "react"
 
 export const MessageToUser = ({message, setMessage, type}) => {
     const [closeStyle, setCloseStyle] = useState(false)
@@ -11,6 +11,14 @@ export const MessageToUser = ({message, setMessage, type}) => {
             setCloseStyle(false);
         }, 800)
     }
+
+    useEffect(() => {
+        if (message !== "") {
+            setTimeout(() => {
+                close()
+            }, 2000)
+        }
+    }, [message]);
 
     return <>
         {
