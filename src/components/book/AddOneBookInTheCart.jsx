@@ -2,7 +2,15 @@ import {useDispatch} from "react-redux"
 import {UpdateCart} from "../../store/reducers/cartReducer"
 import styles from "../../static/css/AddOneBookInTheCart.module.css"
 
-export const AddOneBookInTheCart = ({book, cartReducer, setCart, setFullPrice, setMessage, setTypeMessage, setIsLoading}) => {
+export const AddOneBookInTheCart = ({
+                                        book,
+                                        cartReducer,
+                                        setCart,
+                                        setFullPrice,
+                                        setMessage,
+                                        setTypeMessage,
+                                        setIsLoading
+}) => {
     const dispatch = useDispatch();
 
     const addOne = () => {

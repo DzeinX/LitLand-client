@@ -2,7 +2,16 @@ import {useDispatch} from "react-redux"
 import {UpdateCart} from "../../store/reducers/cartReducer"
 import styles from "../../static/css/RemoveBookFromTheCart.module.css"
 
-export const RemoveBookFromTheCart = ({book, cartReducer, setCart, setCartLength, setFullPrice, setMessage, setTypeMessage, setIsLoading}) => {
+export const RemoveBookFromTheCart = ({
+                                          book,
+                                          cartReducer,
+                                          setCart,
+                                          setCartLength,
+                                          setFullPrice,
+                                          setMessage,
+                                          setTypeMessage,
+                                          setIsLoading
+}) => {
     const dispatch = useDispatch();
 
     const removeFromTheCart = () => {

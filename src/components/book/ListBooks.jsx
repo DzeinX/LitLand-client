@@ -21,10 +21,11 @@ export const ListBooks = () => {
             },
         })
             .then((response) => response.json())
-            .then((data) => setBooks(data))
+            .then((data) => {
+                if (data.verdict !== "SUCCESS") return
+                setBooks(data.books)
+            })
     }, [page, pageSize]);
-
-
 
     return <>
         <BookPaginationController

@@ -22,10 +22,12 @@ export const BookCover = ({size, book}) => {
     }, [book.coverName]);
 
     return <div className={styles["book-cover"] + " " + size + " " + (book.isNew ? styles["highlight"] : "")}>
-        {img === "" && <div>
-            <Preloader/>
-            <div className={styles["fake-image"]}></div>
-        </div>}
+        {
+            img === "" && <div>
+                <Preloader/>
+                <div className={styles["fake-image"]}></div>
+            </div>
+        }
         {img !== "" && <img className={styles["image-root"]} src={img} alt="Обложка"/>}
         {book.isNew && <div className={styles["is-new"]}>Новинка</div>}
     </div>

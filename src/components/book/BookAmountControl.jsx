@@ -4,7 +4,14 @@ import styles from "../../static/css/BookAmountControl.module.css"
 import {Preloader} from "../Preloader";
 import {useNavigate} from "react-router-dom";
 
-export const BookAmountControl = ({book, cartReducer, setCartLength, setFullPrice, setMessage, setTypeMessage}) => {
+export const BookAmountControl = ({
+                                      book,
+                                      cartReducer,
+                                      setCartLength,
+                                      setFullPrice,
+                                      setMessage,
+                                      setTypeMessage
+}) => {
     const [cart, setCart] = useState(book)
     const [isLoading, setIsLoading] = useState(false)
     const [img, setImg] = useState("");

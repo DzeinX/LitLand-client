@@ -16,11 +16,10 @@ export const BookPaginationController = ({page, pageSize, setPage, setPageSize, 
         })
             .then((response) => response.json())
             .then((data) => {
-                if (data === -1) return
-                setAmountPages(data)
+                if (data.verdict !== "SUCCESS") return
+                setAmountPages(data.totalPages)
             })
     }, [pageSize])
-
 
     const nextPage = () => {
         if (page === amountPages) return
@@ -28,7 +27,7 @@ export const BookPaginationController = ({page, pageSize, setPage, setPageSize, 
     }
 
     const prevPage = () => {
-        if (page === 1) return
+        if (page < 1) return
         setPage((prev) => prev - 1)
     }
 
@@ -43,7 +42,7 @@ export const BookPaginationController = ({page, pageSize, setPage, setPageSize, 
             amountPages !== -1 && <div className={styles["pagination-controller"]}>
                 <button onClick={prevPage} disabled={page === 1}>Предыдущая страница</button>
                 <div className={styles["page-number"]}>{page} из {amountPages}</div>
-                <input type="number" onChange={e => changePageSize(e.target.value)} defaultValue={pageSize} />
+                <input type="number" onChange={e => changePageSize(e.target.value)} value={pageSize} defaultValue={pageSize} />
                 <button onClick={nextPage} disabled={page === amountPages}>Следующая страница</button>
             </div>
         }
