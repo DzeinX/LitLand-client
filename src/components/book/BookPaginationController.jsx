@@ -24,11 +24,13 @@ export const BookPaginationController = ({page, pageSize, setPage, setPageSize, 
     const nextPage = () => {
         if (page === amountPages) return
         setPage((prev) => prev + 1)
+        setBooks(null)
     }
 
     const prevPage = () => {
         if (page < 1) return
         setPage((prev) => prev - 1)
+        setBooks(null)
     }
 
     const changePageSize = (value) => {
