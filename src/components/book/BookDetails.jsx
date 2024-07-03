@@ -26,11 +26,11 @@ export const BookDetails = ({book}) => {
             </div>}
             {book.publisher && <div className={styles["list-entry"]}>
                 <div className={styles["left"]}>Издательство</div>
-                <div className={styles["right"]}>{book.publisher}</div>
+                <div className={styles["right"]}>{book.publisher.name}</div>
             </div>}
             {book.genre && <div className={styles["list-entry"]}>
                 <div className={styles["left"]}>Жанр</div>
-                <div className={styles["right"]}>{book.genre}</div>
+                <div className={styles["right"]}>{book.genre.name}</div>
             </div>}
         </div>
     </div>

@@ -5,7 +5,6 @@ import {Preloader} from "../Preloader";
 export const BookCover = ({size, book}) => {
     const [img, setImg] = useState("");
 
-
     useEffect(() => {
         fetch("http://localhost:9090/book/image/" + (book.coverName === null ? "default.png" : book.coverName), {
             method: 'GET',

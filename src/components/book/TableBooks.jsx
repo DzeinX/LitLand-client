@@ -47,8 +47,8 @@ export const TableBooks = ({books}) => {
                 <td className="description" style={{padding: "5px 10px"}}>{book.description || "Нет"}</td>
                 <td className="publication-year" style={{padding: "5px 10px"}}>{book.publicationYear || "Нет"}</td>
                 <td className="rating" style={{padding: "5px 10px"}}>{book.rating || "Нет"}</td>
-                <td className="publisher" style={{padding: "5px 10px"}}>{book.publisher || "Нет"}</td>
-                <td className="genre" style={{padding: "5px 10px"}}>{book.genre || "Нет"}</td>
+                <td className="publisher" style={{padding: "5px 10px"}}>{book.publisher.name || "Нет"}</td>
+                <td className="genre" style={{padding: "5px 10px"}}>{book.genre.name || "Нет"}</td>
                 <td className="authors"
                     style={{padding: "5px 10px"}}>{book.authors === null ? "Не найден" : book.authors}</td>
                 <td className="isbnnumber" style={{padding: "5px 10px"}}>{book.isbnnumber || "Нет"}</td>
