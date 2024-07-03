@@ -2,10 +2,12 @@ import {UpdateCart} from "../../store/reducers/cartReducer"
 import {useDispatch} from "react-redux"
 import styles from "../../static/css/FirstInTheCart.module.css"
 
-export const FirstInTheCart = ({book, cartReducer, setCart, setCartLength, setMessage, setTypeMessage}) => {
-    const dispatch = useDispatch();
+export const FirstInTheCart = ({book, cartReducer, setCart, setCartLength, setMessage, setTypeMessage, setIsLoading}) => {
+    const dispatch = useDispatch()
 
     const addToCart = () => {
+        setIsLoading(true);
+
         fetch('http://localhost:9090/cart/add-new', {
             method: 'POST',
             mode: 'cors',
@@ -27,6 +29,7 @@ export const FirstInTheCart = ({book, cartReducer, setCart, setCartLength, setMe
                     setMessage(data.message)
                     setTypeMessage("warning")
                 }
+                setIsLoading(false);
             })
     }
 

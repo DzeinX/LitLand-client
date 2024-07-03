@@ -2,12 +2,14 @@ import {useDispatch} from "react-redux"
 import {UpdateCart} from "../../store/reducers/cartReducer"
 import styles from "../../static/css/AddOneBookInTheCart.module.css"
 
-export const AddOneBookInTheCart = ({book, cartReducer, setCart, setFullPrice, setMessage, setTypeMessage}) => {
+export const AddOneBookInTheCart = ({book, cartReducer, setCart, setFullPrice, setMessage, setTypeMessage, setIsLoading}) => {
     const dispatch = useDispatch();
 
     const addOne = () => {
+        setIsLoading(true);
+
         fetch('http://localhost:9090/cart/add-one', {
-            method: 'POST',
+            method: 'PUT',
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
@@ -32,6 +34,7 @@ export const AddOneBookInTheCart = ({book, cartReducer, setCart, setFullPrice, s
                     setMessage(data.message)
                     setTypeMessage("warning")
                 }
+                setIsLoading(false);
             })
     }
 

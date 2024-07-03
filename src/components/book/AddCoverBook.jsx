@@ -1,20 +1,20 @@
-import {useRef, useState} from "react"
+import {useState} from "react"
 import styles from "../../static/css/AddCoverBook.module.css"
+import {Preloader} from "../Preloader";
 
 export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibility, setTypeMessage}) => {
-    const buttonCoverRef = useRef();
-    const [file, setFile] = useState("");
+    const [file, setFile] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
 
     const submitFormCover = (e) => {
         e.preventDefault()
-        buttonCoverRef.current.innerHTML = "Загрузка...";
+        setIsLoading(true)
 
         const data = new FormData()
-        console.log(file)
         data.append("cover", file);
 
         fetch('http://localhost:9090/employee/add-cover/' + bookHash.current, {
-            method: 'POST',
+            method: 'PUT',
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
@@ -34,7 +34,7 @@ export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibil
                     setMessage("Не удалось загрузить обложку, возможно, не тот формат (допустимые форматы: jpg, png, ico)")
                     setTypeMessage("warning")
                 }
-            }).finally(() => buttonCoverRef.current.innerHTML = "Загрузить")
+            }).finally(() => setIsLoading(false))
     }
 
     function handleFileChange(e) {
@@ -44,10 +44,14 @@ export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibil
     return <div className={styles["add-cover-book"]}>
         <div className={styles["title"]}>А теперь, пришло время добавить обложку</div>
         <form onSubmit={submitFormCover} method="POST" encType="multipart/form-data">
-            {/*<input type="file" accept="pdf,epub" name="fileName" placeholder="Файл книги"/>*/}
-            <input type="file" accept="image/jpg, image/png" name="coverName" placeholder="Файл обложки" required
+            <input type="file" accept="image/jpeg, image/png" name="coverName" placeholder="Файл обложки" required
                    onChange={handleFileChange}/>
-            <button ref={buttonCoverRef} type="submit">Загрузить</button>
+            <button type="submit">
+                {isLoading
+                    ? <Preloader size={"small"} color={"#fff"} />
+                    : "Загрузить"
+                }
+            </button>
         </form>
     </div>
 }

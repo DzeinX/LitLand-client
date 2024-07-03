@@ -1,16 +1,16 @@
 import styles from "../static/css/MessageToUser.module.css"
-import {useEffect, useState} from "react"
+import {useCallback, useEffect, useState} from "react"
 
 export const MessageToUser = ({message, setMessage, type}) => {
     const [closeStyle, setCloseStyle] = useState(false)
 
-    const close = () => {
+    const close = useCallback(() => {
         setCloseStyle(true)
         setTimeout(() => {
             setMessage("")
             setCloseStyle(false);
         }, 800)
-    }
+    }, [setMessage])
 
     useEffect(() => {
         if (message !== "") {
@@ -18,11 +18,14 @@ export const MessageToUser = ({message, setMessage, type}) => {
                 close()
             }, 2000)
         }
-    }, [message]);
+    }, [message, close]);
 
     return <>
         {
-            message !== "" && <div className={styles["message"] + " " + styles[type] + " " + " " + (closeStyle ? styles["close"] : "")}>
+            message !== "" && <div className={styles["message"]
+                + " " + styles[type] + " "
+                + " " + (closeStyle ? styles["close"] : "")}
+            >
                 <div className={styles["message-box"]} onClick={close}>
                     <div className={styles["cross"]}>×</div>
                     <div className={styles["text"]}>{message}</div>

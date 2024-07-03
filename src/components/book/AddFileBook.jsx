@@ -1,20 +1,21 @@
-import {useRef, useState} from "react"
+import {useState} from "react"
 import styles from "../../static/css/AddFileBook.module.css"
+import {Preloader} from "../Preloader";
 
 export const AddFileBook = ({setMessage, bookHash, setLevel, setTypeMessage}) => {
-    const buttonCoverRef = useRef();
-    const [file, setFile] = useState("");
+    const [file, setFile] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
 
     const submitFormCover = (e) => {
         e.preventDefault()
-        buttonCoverRef.current.innerHTML = "Загрузка...";
+        setIsLoading(true)
 
         const data = new FormData()
         console.log(file)
         data.append("file", file);
 
         fetch('http://localhost:9090/employee/add-file/' + bookHash.current, {
-            method: 'POST',
+            method: 'PUT',
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
@@ -32,7 +33,7 @@ export const AddFileBook = ({setMessage, bookHash, setLevel, setTypeMessage}) =>
                     setMessage("Не удалось загрузить файл, возможно, не тот формат (допустимые форматы: pdf, docx, doc, epub, fb2, mobi, kf8, azw, lrf)")
                     setTypeMessage("warning")
                 }
-            }).finally(() => buttonCoverRef.current.innerHTML = "Загрузить")
+            }).finally(() => setIsLoading(false))
     }
 
     function handleFileChange(e) {
@@ -44,7 +45,11 @@ export const AddFileBook = ({setMessage, bookHash, setLevel, setTypeMessage}) =>
         <form onSubmit={submitFormCover} method="POST" encType="multipart/form-data">
             <input type="file" accept="application/pdf, application/msword, application/epub, application/fb2, application/mobi, application/kf8, application/azw, application/lrf" name="fileName" required
                    onChange={handleFileChange}/>
-            <button ref={buttonCoverRef} type="submit">Загрузить</button>
+            <button type="submit">
+                {isLoading
+                    ? <Preloader size={"small"} color={"#fff"} />
+                    : "Загрузить"}
+            </button>
         </form>
     </div>
 }

@@ -2,13 +2,15 @@ import {UpdateCart} from "../../store/reducers/cartReducer";
 import {useDispatch} from "react-redux";
 import styles from "../../static/css/RemoveOneBookFromTheCart.module.css"
 
-export const RemoveOneBookFromTheCart = ({book, cartReducer, setCart, cart, setCartLength, setFullPrice, setMessage, setTypeMessage}) => {
+export const RemoveOneBookFromTheCart = ({book, cartReducer, setCart, cart, setCartLength, setFullPrice, setMessage, setTypeMessage, setIsLoading}) => {
     const dispatch = useDispatch();
 
     const removeOne = () => {
+        setIsLoading(true);
+
         if (cart.amount === 1) {
             fetch('http://localhost:9090/cart/remove', {
-                method: 'POST',
+                method: 'DELETE',
                 mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
@@ -36,10 +38,11 @@ export const RemoveOneBookFromTheCart = ({book, cartReducer, setCart, cart, setC
                         setMessage(data.message)
                         setTypeMessage("warning")
                     }
+                    setIsLoading(false);
                 })
         } else {
             fetch('http://localhost:9090/cart/remove-one', {
-                method: 'POST',
+                method: 'PUT',
                 mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
@@ -64,6 +67,7 @@ export const RemoveOneBookFromTheCart = ({book, cartReducer, setCart, cart, setC
                         setMessage(data.message)
                         setTypeMessage("warning")
                     }
+                    setIsLoading(false);
                 })
         }
     }

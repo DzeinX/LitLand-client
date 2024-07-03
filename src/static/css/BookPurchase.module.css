@@ -2,6 +2,11 @@
 
 }
 
+.buttons {
+    position: relative;
+    min-height: 60px;
+}
+
 .price {
     font-weight: bold;
     font-size: 1.6rem;

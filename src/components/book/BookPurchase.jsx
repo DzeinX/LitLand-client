@@ -5,6 +5,7 @@ import styles from "../../static/css/BookPurchase.module.css"
 
 export const BookPurchase = ({book, cartReducer, setCartLength, setMessage, setTypeMessage}) => {
     const [cart, setCart] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         for (const bookInCart of cartReducer) {
@@ -19,25 +20,30 @@ export const BookPurchase = ({book, cartReducer, setCartLength, setMessage, setT
         <div className={styles["price"]}>
             {book.price} ₽
         </div>
-        {cart === null && <FirstInTheCart
-            book={book}
-            cartReducer={cartReducer}
-            setCart={setCart}
-            setCartLength={setCartLength}
-            setFullPrice={() => {}}
-            setMessage={setMessage}
-            setTypeMessage={setTypeMessage}
-        />}
-        {cart !== null && <AddRemoveCartWidget
-            book={book}
-            cartReducer={cartReducer}
-            setCart={setCart}
-            cart={cart}
-            setCartLength={setCartLength}
-            setFullPrice={() => {}}
-            setMessage={setMessage}
-            setTypeMessage={setTypeMessage}
-        />}
-        {/*<button type="button">Добавить в корзину</button>*/}
+        <div className={styles["buttons"]}>
+            {(cart === null && !isLoading) && <FirstInTheCart
+                book={book}
+                cartReducer={cartReducer}
+                setCart={setCart}
+                setCartLength={setCartLength}
+                setFullPrice={() => {}}
+                setMessage={setMessage}
+                setTypeMessage={setTypeMessage}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+            />}
+            {(cart !== null || isLoading) && <AddRemoveCartWidget
+                book={book}
+                cartReducer={cartReducer}
+                setCart={setCart}
+                cart={cart}
+                setCartLength={setCartLength}
+                setFullPrice={() => {}}
+                setMessage={setMessage}
+                setTypeMessage={setTypeMessage}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+            />}
+        </div>
     </div>
 }

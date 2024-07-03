@@ -4,7 +4,7 @@ import {FillNecessaryInfoDigitalBook} from "./FillNecessaryInfoDigitalBook"
 import {AddFileBook} from "./AddFileBook";
 
 export const AddDigitalBook = ({setMessage, bookHash, setBookTypeVisibility, setTypeMessage}) => {
-    const [level, setLevel] = useState(1);
+    const [level, setLevel] = useState(1)
 
     return <div className="add-digital-book">
         {level === 1 && <FillNecessaryInfoDigitalBook

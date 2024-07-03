@@ -10,6 +10,8 @@
     text-align: center;
     background-color: rgba(39, 174, 96, 1.0);
     cursor: default;
+    height: 100%;
+    position: relative;
 }
 
 .amount-widget {

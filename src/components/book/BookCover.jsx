@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import styles from "../../static/css/BookCover.module.css"
+import {Preloader} from "../Preloader";
 
 export const BookCover = ({size, book}) => {
     const [img, setImg] = useState("");
@@ -7,7 +8,7 @@ export const BookCover = ({size, book}) => {
 
     useEffect(() => {
         fetch("http://localhost:9090/book/image/" + (book.coverName === null ? "default.png" : book.coverName), {
-            method: 'POST',
+            method: 'GET',
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
@@ -22,7 +23,11 @@ export const BookCover = ({size, book}) => {
     }, [book.coverName]);
 
     return <div className={styles["book-cover"] + " " + size + " " + (book.isNew ? styles["highlight"] : "")}>
-        <img className={styles["image-root"]} src={img} alt="Обложка"/>
+        {img === "" && <div>
+            <Preloader/>
+            <div className={styles["fake-image"]}></div>
+        </div>}
+        {img !== "" && <img className={styles["image-root"]} src={img} alt="Обложка"/>}
         {book.isNew && <div className={styles["is-new"]}>Новинка</div>}
     </div>
 }

@@ -18,7 +18,13 @@
 .image-root {
     position: relative;
     width: 100%;
+    margin-bottom: -4px;
     z-index: 9;
+}
+
+.fake-image {
+    width: 100%;
+    aspect-ratio: 1/1;
 }
 
 .is-new {

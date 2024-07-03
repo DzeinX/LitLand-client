@@ -1,14 +1,15 @@
-import {useRef} from "react"
+import {useState} from "react"
 import {useSelector} from "react-redux"
 import styles from "../../static/css/FillNecessaryInfoDigitalBook.module.css"
+import {Preloader} from "../Preloader";
 
 export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, setBookTypeVisibility, setTypeMessage}) => {
-    const buttonBookRef = useRef();
     const languageReducer = useSelector(state => state.languageReducer)
+    const [isLoading, setIsLoading] = useState(false)
 
     const submitFormBook = (e) => {
         e.preventDefault()
-        buttonBookRef.current.innerHTML = "Загрузка...";
+        setIsLoading(true)
 
         const data = new FormData(e.target)
 
@@ -47,7 +48,7 @@ export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, se
                     setMessage("Ошибка добавления книги")
                     setTypeMessage("error")
                 }
-            }).finally(() => buttonBookRef.current.innerHTML = "Создать книгу")
+            }).finally(() => setIsLoading(false))
     }
 
     return <form
@@ -77,6 +78,10 @@ export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, se
             <span>Это новинка</span>
             <input type="checkbox" name="isNew" placeholder="Новинка"/>
         </label>
-        <button ref={buttonBookRef} type="submit">Создать книгу</button>
+        <button type="submit">
+            {isLoading
+                ? <Preloader size={"small"} color={"#fff"} />
+                : "Создать книгу"}
+        </button>
     </form>
 }

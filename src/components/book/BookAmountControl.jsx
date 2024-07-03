@@ -4,6 +4,7 @@ import styles from "../../static/css/BookAmountControl.module.css"
 
 export const BookAmountControl = ({book, cartReducer, setCartLength, setFullPrice, setMessage, setTypeMessage}) => {
     const [cart, setCart] = useState(book)
+    const [isLoading, setIsLoading] = useState(false)
 
     return <div className={styles["book-purchase"]}>
         <a href={"/book/" + book.hash}>
@@ -21,6 +22,8 @@ export const BookAmountControl = ({book, cartReducer, setCartLength, setFullPric
                     setFullPrice={setFullPrice}
                     setMessage={setMessage}
                     setTypeMessage={setTypeMessage}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
                 />
             </div>
             <div className={styles["book-total"]}>
