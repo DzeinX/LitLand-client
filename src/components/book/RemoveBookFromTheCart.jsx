@@ -56,5 +56,5 @@ export const RemoveBookFromTheCart = ({
         onClick={removeFromTheCart}
         className={styles["remove-all"]}
         title="Удалить из корзины"
-    >Удалить из корзины</button>
+    ></button>
 }
