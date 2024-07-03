@@ -2,11 +2,13 @@ import {useEffect, useState} from "react"
 import {AddRemoveCartWidget} from "./AddRemoveCartWidget"
 import styles from "../../static/css/BookAmountControl.module.css"
 import {Preloader} from "../Preloader";
+import {useNavigate} from "react-router-dom";
 
 export const BookAmountControl = ({book, cartReducer, setCartLength, setFullPrice, setMessage, setTypeMessage}) => {
     const [cart, setCart] = useState(book)
     const [isLoading, setIsLoading] = useState(false)
     const [img, setImg] = useState("");
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch("http://localhost:9090/book/image/" + (book.coverName === null ? "default.png" : book.coverName), {
@@ -30,7 +32,7 @@ export const BookAmountControl = ({book, cartReducer, setCartLength, setFullPric
                 <Preloader/>
                 <div className={styles["fake-image"]}></div>
             </div>}
-            {img !== "" && <img className={styles["image-root"]} src={img} alt="Обложка книги"/>}
+            {img !== "" && <img onClick={() => navigate("/book/" + book.hash)} className={styles["image-root"]} src={img} alt="Обложка книги"/>}
         </div>
         <div className={styles["info"]}>
             <a href={"/book/" + book.hash}>
