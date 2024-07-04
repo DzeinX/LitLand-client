@@ -1,6 +1,6 @@
 import {useState} from "react"
 import styles from "../../static/css/AddCoverBook.module.css"
-import {Preloader} from "../Preloader";
+import {SubmitButton} from "../form/SubmitButton"
 
 export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibility, setTypeMessage}) => {
     const [file, setFile] = useState("")
@@ -46,12 +46,7 @@ export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibil
         <form onSubmit={submitFormCover} method="POST" encType="multipart/form-data">
             <input type="file" accept="image/jpeg, image/png" name="coverName" placeholder="Файл обложки" required
                    onChange={handleFileChange}/>
-            <button type="submit">
-                {isLoading
-                    ? <Preloader size={"small"} color={"#fff"} />
-                    : "Загрузить"
-                }
-            </button>
+            <SubmitButton isLoading={isLoading}/>
         </form>
     </div>
 }

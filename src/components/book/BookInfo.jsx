@@ -3,20 +3,17 @@ import {BookMainInfo} from "./BookMainInfo"
 import {BookDescription} from "./BookDescription"
 import {BookDetails} from "./BookDetails"
 import styles from "../../static/css/BookInfo.module.css"
-import {MessageToUser} from "../MessageToUser";
-import {useState} from "react";
+import {MessageToUser} from "../MessageToUser"
+import {useMessage} from "../../hooks/useMessage"
 
-export const BookInfo = ({book, cartReducer, setCartLength}) => {
-    const [message, setMessage] = useState("");
-    const [typeMessage, setTypeMessage] = useState("warning");
+export const BookInfo = ({book, setCartLength}) => {
+    const {message, setMessage, typeMessage, setTypeMessage} = useMessage()
 
     return <div className={styles["book-info"]}>
         <MessageToUser message={message} setMessage={setMessage} type={typeMessage}/>
-
         <div className={styles["sticky-panel"]}>
             <BookPurchaseOffer
                 book={book}
-                cartReducer={cartReducer}
                 setCartLength={setCartLength}
                 setMessage={setMessage}
                 setTypeMessage={setTypeMessage}

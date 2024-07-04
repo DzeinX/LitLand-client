@@ -1,10 +1,10 @@
-import {Header} from "../components/Header"
 import {useSelector} from "react-redux"
 import {useState} from "react"
-import {BookAmountControl} from "../components/book/BookAmountControl";
-import styles from "../static/css/Page.module.css";
-import {MessageToUser} from "../components/MessageToUser";
-import {Footer} from "../components/Footer";
+import styles from "../static/css/Page.module.css"
+import {MessageToUser} from "../components/MessageToUser"
+import {PageWrap} from "../components/PageWrap"
+import {CartList} from "../components/cart/CartList";
+import {CartTotal} from "../components/cart/CartTotal";
 
 export const CartPage = () => {
     const cartReducer = useSelector(state => state.cartReducer)
@@ -14,30 +14,21 @@ export const CartPage = () => {
     const [fullPrice, setFullPrice] = useState(() => {
         let sum = 0;
         for (const book of cartReducer) {
-            sum += book.price * book.amount
+            sum += (book.price * book.amount)
         }
         return sum
     })
 
     return <div className={styles["page"]}>
-        <Header cartLength={cartLength}/>
-        <MessageToUser message={message} setMessage={setMessage} type={typeMessage}/>
-        {
-            cartReducer.map((book, index) => {
-                return <BookAmountControl
-                    book={book}
-                    cartReducer={cartReducer}
-                    setCartLength={setCartLength}
-                    setFullPrice={setFullPrice}
-                    setMessage={setMessage}
-                    setTypeMessage={setTypeMessage}
-                />
-            })
-        }
-        <div className={styles["total"]} style={{fontSize: "1.5rem", textAlign: "right", marginTop: "40px", fontWeight: "bold"}}>
-            {cartReducer.length === 0 && "Вы ещё не выбрали книги"}
-            {cartReducer.length !== 0 && ("ИТОГО " + fullPrice + " руб")}
-        </div>
-        <Footer/>
+        <PageWrap cartLength={cartLength}>
+            <MessageToUser message={message} setMessage={setMessage} type={typeMessage}/>
+            <CartList
+                setCartLength={setCartLength}
+                setFullPrice={setFullPrice}
+                setMessage={setMessage}
+                setTypeMessage={setTypeMessage}
+            />
+            <CartTotal fullPrice={fullPrice}/>
+        </PageWrap>
     </div>
 }

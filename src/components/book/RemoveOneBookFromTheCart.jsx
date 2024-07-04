@@ -1,24 +1,15 @@
 import {UpdateCart} from "../../store/reducers/cartReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import styles from "../../static/css/RemoveOneBookFromTheCart.module.css"
 
-export const RemoveOneBookFromTheCart = ({
-                                             book,
-                                             cartReducer,
-                                             setCart,
-                                             cart,
-                                             setCartLength,
-                                             setFullPrice,
-                                             setMessage,
-                                             setTypeMessage,
-                                             setIsLoading
-}) => {
-    const dispatch = useDispatch();
+export const RemoveOneBookFromTheCart = ({hash, setCart, amount, setCartLength, setFullPrice, setMessage, setTypeMessage, setIsLoading}) => {
+    const dispatch = useDispatch()
+    const cartReducer = useSelector(state => state.cartReducer)
 
     const removeOne = () => {
-        setIsLoading(true);
+        setIsLoading(true)
 
-        if (cart.amount === 1) {
+        if (amount === 1) {
             fetch('http://localhost:9090/cart/remove', {
                 method: 'DELETE',
                 mode: 'cors',
@@ -27,14 +18,14 @@ export const RemoveOneBookFromTheCart = ({
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': 'http://localhost:3000/',
                 },
-                body: JSON.stringify({hash: book.hash})
+                body: JSON.stringify({hash: hash})
             })
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.verdict === "SUCCESS") {
                         let sum = 0
                         for (let i = 0; i < cartReducer.length; i++) {
-                            if (cartReducer[i].hash === book.hash) {
+                            if (cartReducer[i].hash === hash) {
                                 sum = cartReducer[i].amount * cartReducer[i].price;
                                 cartReducer.splice(i, 1);
                                 break
@@ -48,7 +39,7 @@ export const RemoveOneBookFromTheCart = ({
                         setMessage(data.message)
                         setTypeMessage("warning")
                     }
-                    setIsLoading(false);
+                    setIsLoading(false)
                 })
         } else {
             fetch('http://localhost:9090/cart/remove-one', {
@@ -59,13 +50,13 @@ export const RemoveOneBookFromTheCart = ({
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': 'http://localhost:3000/',
                 },
-                body: JSON.stringify({hash: book.hash})
+                body: JSON.stringify({hash: hash})
             })
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.book !== null) {
                         for (const bookInCart of cartReducer) {
-                            if (bookInCart.hash === book.hash) {
+                            if (bookInCart.hash === hash) {
                                 bookInCart.amount = bookInCart.amount - 1;
                                 break
                             }

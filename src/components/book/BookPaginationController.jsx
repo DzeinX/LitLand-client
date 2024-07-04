@@ -1,52 +1,22 @@
-import styles from "../../static/css/BookPaginationController.module.css"
-import {useEffect, useState} from "react"
+import useSWR from "swr";
+import {Pagination} from "./Pagination";
+import {fetcherGet} from "../../fetchers/fetcher";
 
-export const BookPaginationController = ({page, pageSize, setPage, setPageSize, setBooks}) => {
-    const [amountPages, setAmountPages] = useState(1)
+export const BookPaginationController = ({page, pageSize, setPage, setPageSize}) => {
+    const url = 'http://localhost:9090/book/amount-pages?size=' + pageSize
+    const {data, error, isLoading} = useSWR(url, fetcherGet)
 
-    useEffect(() => {
-        fetch('http://localhost:9090/book/amount-pages?size=' + pageSize, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000/',
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.verdict !== "SUCCESS") return
-                setAmountPages(data.totalPages)
-            })
-    }, [pageSize])
+    if (isLoading || error !== undefined) return null
 
-    const nextPage = () => {
-        if (page === amountPages) return
-        setPage((prev) => prev + 1)
-        setBooks(null)
+    if (page > data.totalPages) {
+        setPage(data.totalPages)
     }
 
-    const prevPage = () => {
-        if (page < 1) return
-        setPage((prev) => prev - 1)
-        setBooks(null)
-    }
-
-    const changePageSize = (value) => {
-        if (value < 1) return
-        setBooks(null)
-        setPageSize(value)
-    }
-
-    return <>
-        {
-            amountPages !== -1 && <div className={styles["pagination-controller"]}>
-                <button onClick={prevPage} disabled={page === 1}>Предыдущая страница</button>
-                <div className={styles["page-number"]}>{page} из {amountPages}</div>
-                <input type="number" onChange={e => changePageSize(e.target.value)} value={pageSize} defaultValue={pageSize} />
-                <button onClick={nextPage} disabled={page === amountPages}>Следующая страница</button>
-            </div>
-        }
-    </>
+    return <Pagination
+        page={page}
+        pageSize={pageSize}
+        setPage={setPage}
+        setPageSize={setPageSize}
+        amountPages={data.totalPages}
+    />
 }

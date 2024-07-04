@@ -1,18 +1,10 @@
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {UpdateCart} from "../../store/reducers/cartReducer"
 import styles from "../../static/css/RemoveBookFromTheCart.module.css"
 
-export const RemoveBookFromTheCart = ({
-                                          book,
-                                          cartReducer,
-                                          setCart,
-                                          setCartLength,
-                                          setFullPrice,
-                                          setMessage,
-                                          setTypeMessage,
-                                          setIsLoading
-}) => {
-    const dispatch = useDispatch();
+export const RemoveBookFromTheCart = ({hash, setCart, setCartLength, setFullPrice, setMessage, setTypeMessage, setIsLoading}) => {
+    const dispatch = useDispatch()
+    const cartReducer = useSelector(state => state.cartReducer)
 
     const removeFromTheCart = () => {
         setIsLoading(true)
@@ -25,14 +17,14 @@ export const RemoveBookFromTheCart = ({
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000/',
             },
-            body: JSON.stringify({hash: book.hash})
+            body: JSON.stringify({hash: hash})
         })
             .then((response) => response.json())
             .then((data) => {
                 if (data.verdict === "SUCCESS") {
                     let sum = 0
                     for (let i = 0; i < cartReducer.length; i++) {
-                        if (cartReducer[i].hash === book.hash) {
+                        if (cartReducer[i].hash === hash) {
                             sum = cartReducer[i].amount * cartReducer[i].price;
                             cartReducer.splice(i, 1);
                             break

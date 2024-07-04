@@ -1,31 +1,13 @@
-import {TableBooks} from "./TableBooks"
-import {useEffect, useState} from "react"
-import {Preloader} from "../Preloader"
-import {NoBooksFound} from "./NoBooksFound"
-import {BookPaginationController} from "./BookPaginationController";
-
+import {BookPaginationController} from "./BookPaginationController"
+import useSWR from "swr";
+import {AwaitTableBooks} from "./AwaitTableBooks";
+import {usePage} from "../../hooks/usePage";
+import {fetcherGet} from "../../fetchers/fetcher";
 
 export const ListBooks = () => {
-    const [books, setBooks] = useState(null)
-    const [page, setPage] = useState(1)
-    const [pageSize, setPageSize] = useState(2)
-
-    useEffect(() => {
-        fetch('http://localhost:9090/?page=' + (page - 1) + '&size=' + pageSize, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000/',
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.verdict !== "SUCCESS") return
-                setBooks(data.books)
-            })
-    }, [page, pageSize]);
+    const {page, setPage, pageSize, setPageSize} = usePage(1, 5)
+    const url = 'http://localhost:9090/?page=' + (page - 1) + '&size=' + pageSize
+    const {data, error, isLoading} = useSWR(url, fetcherGet)
 
     return <>
         <BookPaginationController
@@ -33,11 +15,11 @@ export const ListBooks = () => {
             pageSize={pageSize}
             setPage={setPage}
             setPageSize={setPageSize}
-            setBooks={setBooks}
         />
-        {books === null
-            ? <Preloader/>
-            : books.length === 0 ? <NoBooksFound/> : <TableBooks books={books}/>
-        }
+        <AwaitTableBooks
+            isLoading={isLoading}
+            error={error}
+            data={data}
+        />
     </>
 }

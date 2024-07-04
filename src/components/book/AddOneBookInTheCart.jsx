@@ -1,17 +1,10 @@
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {UpdateCart} from "../../store/reducers/cartReducer"
 import styles from "../../static/css/AddOneBookInTheCart.module.css"
 
-export const AddOneBookInTheCart = ({
-                                        book,
-                                        cartReducer,
-                                        setCart,
-                                        setFullPrice,
-                                        setMessage,
-                                        setTypeMessage,
-                                        setIsLoading
-}) => {
-    const dispatch = useDispatch();
+export const AddOneBookInTheCart = ({hash, setCart, setFullPrice, setMessage, setTypeMessage, setIsLoading}) => {
+    const dispatch = useDispatch()
+    const cartReducer = useSelector(state => state.cartReducer)
 
     const addOne = () => {
         setIsLoading(true);
@@ -24,13 +17,13 @@ export const AddOneBookInTheCart = ({
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000/',
             },
-            body: JSON.stringify({hash: book.hash})
+            body: JSON.stringify({hash: hash})
         })
             .then((response) => response.json())
             .then((data) => {
                 if (data.book !== null) {
                     for (const bookInCart of cartReducer) {
-                        if (bookInCart.hash === book.hash) {
+                        if (bookInCart.hash === hash) {
                             bookInCart.amount = bookInCart.amount + 1;
                             break
                         }

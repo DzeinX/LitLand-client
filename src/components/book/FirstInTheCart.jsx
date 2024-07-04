@@ -1,9 +1,12 @@
 import {UpdateCart} from "../../store/reducers/cartReducer"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import styles from "../../static/css/FirstInTheCart.module.css"
+import {useParams} from "react-router-dom"
 
-export const FirstInTheCart = ({book, cartReducer, setCart, setCartLength, setMessage, setTypeMessage, setIsLoading}) => {
+export const FirstInTheCart = ({setCart, setCartLength, setMessage, setTypeMessage, setIsLoading}) => {
     const dispatch = useDispatch()
+    const cartReducer = useSelector(state => state.cartReducer)
+    const hash = useParams().hash
 
     const addToCart = () => {
         setIsLoading(true);
@@ -16,7 +19,7 @@ export const FirstInTheCart = ({book, cartReducer, setCart, setCartLength, setMe
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000/',
             },
-            body: JSON.stringify({hash: book.hash})
+            body: JSON.stringify({hash: hash})
         })
             .then((response) => response.json())
             .then((data) => {
@@ -33,5 +36,7 @@ export const FirstInTheCart = ({book, cartReducer, setCart, setCartLength, setMe
             })
     }
 
-    return <button type="button" className={styles["first-in-the-cart"]} onClick={addToCart}>Добавить в корзину</button>
+    return <button type="button" className={styles["first-in-the-cart"]} onClick={addToCart}>
+        Добавить в корзину
+    </button>
 }

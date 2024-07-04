@@ -1,6 +1,6 @@
 import {useState} from "react"
 import styles from "../../static/css/AddFileBook.module.css"
-import {Preloader} from "../Preloader";
+import {SubmitButton} from "../form/SubmitButton"
 
 export const AddFileBook = ({setMessage, bookHash, setLevel, setTypeMessage}) => {
     const [file, setFile] = useState("")
@@ -11,7 +11,7 @@ export const AddFileBook = ({setMessage, bookHash, setLevel, setTypeMessage}) =>
         setIsLoading(true)
 
         const data = new FormData()
-        console.log(file)
+
         data.append("file", file);
 
         fetch('http://localhost:9090/employee/add-file/' + bookHash.current, {
@@ -37,19 +37,18 @@ export const AddFileBook = ({setMessage, bookHash, setLevel, setTypeMessage}) =>
     }
 
     function handleFileChange(e) {
-        if (e.target.files && e.target.files[0]) setFile(e.target.files[0]);
+        if (e.target.files && e.target.files[0]) setFile(e.target.files[0])
     }
 
     return <div className={styles["add-file-book"]}>
         <div className={styles["title"]}>Загрузите файл книги</div>
         <form onSubmit={submitFormCover} method="POST" encType="multipart/form-data">
-            <input type="file" accept="application/pdf, application/msword, application/epub, application/fb2, application/mobi, application/kf8, application/azw, application/lrf" name="fileName" required
+            <input type="file"
+                   accept="application/pdf, application/msword, application/epub, application/fb2, application/mobi, application/kf8, application/azw, application/lrf"
+                   name="fileName"
+                   required
                    onChange={handleFileChange}/>
-            <button type="submit">
-                {isLoading
-                    ? <Preloader size={"small"} color={"#fff"} />
-                    : "Загрузить"}
-            </button>
+            <SubmitButton isLoading={isLoading}/>
         </form>
     </div>
 }

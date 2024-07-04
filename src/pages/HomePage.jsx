@@ -1,15 +1,14 @@
 import {ListBooks} from "../components/book/ListBooks"
-import {Header} from "../components/Header";
-import {useSelector} from "react-redux";
-import styles from "../static/css/Page.module.css";
-import {Footer} from "../components/Footer";
+import {useSelector} from "react-redux"
+import styles from "../static/css/Page.module.css"
+import {PageWrap} from "../components/PageWrap"
 
 export const HomePage = () => {
     const cartReducer = useSelector(state => state.cartReducer)
 
     return <div className={styles["page"]}>
-        <Header cartLength={cartReducer.length}/>
-        <ListBooks/>
-        <Footer/>
+        <PageWrap cartLength={cartReducer.length}>
+            <ListBooks/>
+        </PageWrap>
     </div>
 }

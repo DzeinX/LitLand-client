@@ -20,17 +20,15 @@ export const MessageToUser = ({message, setMessage, type}) => {
         }
     }, [message, close]);
 
-    return <>
-        {
-            message !== "" && <div className={styles["message"]
+    if (message === "") return null
+
+    return <div className={styles["message"]
                 + " " + styles[type] + " "
                 + " " + (closeStyle ? styles["close"] : "")}
-            >
-                <div className={styles["message-box"]} onClick={close}>
-                    <div className={styles["cross"]}>×</div>
-                    <div className={styles["text"]}>{message}</div>
-                </div>
-            </div>
-        }
-    </>
+    >
+        <div className={styles["message-box"]} onClick={close}>
+            <div className={styles["cross"]}>×</div>
+            <div className={styles["text"]}>{message}</div>
+        </div>
+    </div>
 }
