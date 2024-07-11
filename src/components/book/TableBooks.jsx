@@ -2,7 +2,7 @@ import {TableBooksEntry} from "./TableBooksEntry";
 
 export const TableBooks = ({books}) => {
     return <table style={{border: '1px solid #ccc', width: '100%', borderCollapse: 'collapse'}}>
-        <thead style={{backgroundColor: 'goldenrod', color: 'white'}}>
+        <thead style={{backgroundColor: '#ccc', color: 'black'}}>
         <tr style={{height: "30px"}}>
             <th>Название</th>
             <th>Язык</th>

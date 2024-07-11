@@ -14,10 +14,11 @@ export const AddOneBookInTheCart = ({hash, setCart, setFullPrice, setMessage, se
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000/',
             },
-            body: JSON.stringify({hash: hash})
+            body: JSON.stringify({hash: hash, userId: localStorage.getItem('id')})
         })
             .then((response) => response.json())
             .then((data) => {

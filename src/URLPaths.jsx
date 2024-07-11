@@ -5,6 +5,7 @@ import {AddBookPage} from "./pages/AddBookPage"
 import {BookPage} from "./pages/BookPage"
 import {CartPage} from "./pages/CartPage"
 import {NotFoundPage} from "./pages/NotFoundPage"
+import {AuthPage} from "./pages/AuthPage";
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +26,11 @@ export const router = createBrowserRouter([
     {
         path: "/cart",
         element: <CartPage/>,
+        errorElement: <NotFoundPage/>
+    },
+    {
+        path: "/auth",
+        element: <AuthPage/>,
         errorElement: <NotFoundPage/>
     },
     {

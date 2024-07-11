@@ -1,11 +1,8 @@
 import {RemoveBookFromTheCart} from "./RemoveBookFromTheCart"
 import styles from "../../static/css/AddRemoveCartWidget.module.css"
-import {useState} from "react"
 import {AmountWidget} from "./AmountWidget"
 
-export const AddRemoveCartWidget = ({hash, cart, setCart, setCartLength, setFullPrice, setMessage, setTypeMessage}) => {
-    const [isLoading, setIsLoading] = useState(false)
-
+export const AddRemoveCartWidget = ({hash, cart, setCart, setCartLength, setFullPrice, setMessage, setTypeMessage, isLoading, setIsLoading}) => {
     return <div className={styles["amount-control"]}>
         <AmountWidget
             hash={hash}

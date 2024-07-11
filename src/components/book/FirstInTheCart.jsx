@@ -1,12 +1,15 @@
 import {UpdateCart} from "../../store/reducers/cartReducer"
 import {useDispatch, useSelector} from "react-redux"
 import styles from "../../static/css/FirstInTheCart.module.css"
-import {useParams} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
+import {useAuth} from "../../hooks/useAuth";
 
 export const FirstInTheCart = ({setCart, setCartLength, setMessage, setTypeMessage, setIsLoading}) => {
     const dispatch = useDispatch()
     const cartReducer = useSelector(state => state.cartReducer)
     const hash = useParams().hash
+    const navigate = useNavigate()
+    const local = useAuth(false)
 
     const addToCart = () => {
         setIsLoading(true);
@@ -16,12 +19,18 @@ export const FirstInTheCart = ({setCart, setCartLength, setMessage, setTypeMessa
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
+                'Authorization': `Bearer ${local.token}`,
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000/',
             },
-            body: JSON.stringify({hash: hash})
+            body: JSON.stringify({hash: hash, userId: local.id}),
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.json()
+                }
+                navigate("/auth")
+            })
             .then((data) => {
                 if (data.book !== null) {
                     cartReducer.push(data.book)

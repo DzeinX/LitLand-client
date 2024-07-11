@@ -18,6 +18,7 @@ export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibil
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Access-Control-Allow-Origin': 'http://localhost:3000/',
             },
             body: data
@@ -46,7 +47,7 @@ export const AddCoverBook = ({setMessage, bookHash, setLevel, setBookTypeVisibil
         <form onSubmit={submitFormCover} method="POST" encType="multipart/form-data">
             <input type="file" accept="image/jpeg, image/png" name="coverName" placeholder="Файл обложки" required
                    onChange={handleFileChange}/>
-            <SubmitButton isLoading={isLoading}/>
+            <SubmitButton isLoading={isLoading}>Добавить обложку</SubmitButton>
         </form>
     </div>
 }

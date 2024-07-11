@@ -17,6 +17,7 @@ export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, se
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000/',
             },
@@ -56,6 +57,6 @@ export const FillNecessaryInfoDigitalBook = ({setMessage, bookHash, setLevel, se
         className={styles["fill-necessary-info-digital-book"]}
     >
         <RequiredBookInformation />
-        <SubmitButton isLoading={isLoading}/>
+        <SubmitButton isLoading={isLoading}>Создать книгу</SubmitButton>
     </form>
 }

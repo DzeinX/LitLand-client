@@ -6,6 +6,7 @@ import {useState} from "react";
 
 export const BookCartAmountController = ({book, setCartLength, setFullPrice, setMessage, setTypeMessage}) => {
     const [cart, setCart] = useState(book)
+    const [isLoading, setIsLoading] = useState(false)
 
     return <div className={styles["amount-controller"]}>
         <div className={styles["widget"]}>
@@ -17,6 +18,8 @@ export const BookCartAmountController = ({book, setCartLength, setFullPrice, set
                 setFullPrice={setFullPrice}
                 setMessage={setMessage}
                 setTypeMessage={setTypeMessage}
+                setIsLoading={setIsLoading}
+                isLoading={isLoading}
             />
         </div>
         <BookCartTotal book={book} />

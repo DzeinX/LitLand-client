@@ -1,7 +1,50 @@
 .header {
     height: 60px;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0 0 10px #ccc;
+    padding: 20px;
+    border-radius: 10px;
+
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+    background-color: #fff;
+}
+
+.header > a:first-child {
+    background-image: url("../../static/img/logo.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+.line {
+    position: relative;
+}
+
+.line::after {
+    content: "";
+    position: absolute;
+    left: -40px;
+    top: -25%;
+    width: 1px;
+    height: 150%;
+    background: #ccc;
+}
+
+.header > a:first-child:hover {
+    border-bottom: none;
+}
+
+.header a {
+    color: #444;
+    text-decoration: none;
+}
+
+.header a:hover {
+    border-bottom: 1px solid #444;
 }

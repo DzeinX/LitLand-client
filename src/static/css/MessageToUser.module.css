@@ -1,14 +1,15 @@
 .message {
     position: absolute;
-    top: 80px;
-    right: 40px;
+    top: 120px;
+    /*right: 40px;*/
+    right: 50%;
 
     width: 300px;
     padding: 10px 30px 10px 20px;
     border-radius: 10px;
     cursor: pointer;
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(50%) translateY(0);
     transition: 0.8s;
     z-index: 20;
 }
@@ -29,7 +30,7 @@
 }
 
 .message.close {
-    transform: translateX(50px);
+    transform: translateX(50%) translateY(-50px);
     opacity: 0;
 }
 

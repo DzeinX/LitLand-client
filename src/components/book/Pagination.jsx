@@ -26,7 +26,6 @@ export const Pagination = ({page, setPage, pageSize, setPageSize, amountPages}) 
         <input
             type="number"
             onChange={e => changePageSize(e.target.value)}
-            value={pageSize}
             defaultValue={pageSize}
         />
         <button onClick={nextPage} disabled={page === amountPages}>

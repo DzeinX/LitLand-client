@@ -17,6 +17,7 @@ export const FillNecessaryInfoPhysicalBook = ({setMessage, bookHash, setLevel, s
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000/',
             },
@@ -57,6 +58,6 @@ export const FillNecessaryInfoPhysicalBook = ({setMessage, bookHash, setLevel, s
     >
         <RequiredBookInformation />
         <input type="number" name="storageAmount" placeholder="На складе" required/>
-        <SubmitButton isLoading={isLoading}/>
+        <SubmitButton isLoading={isLoading}>Создать книгу</SubmitButton>
     </form>
 }

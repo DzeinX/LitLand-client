@@ -19,6 +19,7 @@ export const AddFileBook = ({setMessage, bookHash, setLevel, setTypeMessage}) =>
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Access-Control-Allow-Origin': 'http://localhost:3000/',
             },
             body: data
@@ -48,7 +49,7 @@ export const AddFileBook = ({setMessage, bookHash, setLevel, setTypeMessage}) =>
                    name="fileName"
                    required
                    onChange={handleFileChange}/>
-            <SubmitButton isLoading={isLoading}/>
+            <SubmitButton isLoading={isLoading}>Добавить файл</SubmitButton>
         </form>
     </div>
 }
