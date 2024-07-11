@@ -13,7 +13,7 @@ export const LogoutForm = ({local, setAuthType, setLocal, setTypeMessage, setMes
         setIsLoading(true)
 
         fetch('http://localhost:9090/auth/logout', {
-            method: 'POST',
+            method: 'GET',
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
