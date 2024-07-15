@@ -1,12 +1,16 @@
 import {getReadableLanguage} from "../../helpers/getReadableLanguage"
 import {useSelector} from "react-redux"
 import styles from "../../static/css/BookDetails.module.css"
+import { IoList } from "react-icons/io5"
 
 export const BookDetails = ({book}) => {
     const languageReducer = useSelector(state => state.languageReducer)
 
     return <div className={styles["details"]}>
-        <div className={styles["title"]}>Подробности</div>
+        <div className={styles["title"]}>
+            <IoList/>
+            Подробности
+        </div>
         <div className={styles["details-list"]}>
             {book.language && <div className={styles["list-entry"]}>
                 <div className={styles["left"]}>Язык</div>

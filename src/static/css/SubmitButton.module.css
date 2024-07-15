@@ -1,0 +1,12 @@
+.submit-button {
+    animation: show 0.5s ease-in-out;
+}
+
+@keyframes show {
+    from {
+        transform: scaleX(0.95);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}

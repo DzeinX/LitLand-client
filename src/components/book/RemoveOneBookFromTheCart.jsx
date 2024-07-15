@@ -1,6 +1,7 @@
-import {UpdateCart} from "../../store/reducers/cartReducer";
-import {useDispatch, useSelector} from "react-redux";
+import {UpdateCart} from "../../store/reducers/cartReducer"
+import {useDispatch, useSelector} from "react-redux"
 import styles from "../../static/css/RemoveOneBookFromTheCart.module.css"
+import { CiCircleMinus } from "react-icons/ci"
 
 export const RemoveOneBookFromTheCart = ({hash, setCart, amount, setCartLength, setFullPrice, setMessage, setTypeMessage, setIsLoading}) => {
     const dispatch = useDispatch()
@@ -80,5 +81,5 @@ export const RemoveOneBookFromTheCart = ({hash, setCart, amount, setCartLength, 
         onClick={removeOne}
         className={styles["remove-one"]}
         title="Меньше"
-    >—</button>
+    ><CiCircleMinus size="24"/></button>
 }

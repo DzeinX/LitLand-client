@@ -1,5 +1,7 @@
 import {memo} from "react";
 import styles from "../static/css/Header.module.css"
+import {IoCartOutline} from "react-icons/io5"
+import { PiSmileySticker } from "react-icons/pi"
 
 export const Header = memo(({cartLength, local}) => {
     // localStorage.clear()
@@ -13,7 +15,17 @@ export const Header = memo(({cartLength, local}) => {
         {local.token !== null
             ? <div className={styles["line"]}>
                 <a title="Профиль" href="/auth" style={{marginRight: "15px"}}>{local.sub}</a>
-                <a title="Корзина" href="/cart">Корзина{cartLength === 0 ? " " : " (" + cartLength + ")"}</a>
+                <a title="Корзина" href="/cart">
+                    <div className={styles["cart"]}>
+                        <IoCartOutline size="20" className={styles["no-absolute"]}/>
+                        {cartLength >= 10
+                            ? <PiSmileySticker color="#fff" size="16"/>
+                            : cartLength === 0
+                                ? null
+                                : <div className={styles["cart-length"]}>{cartLength}</div>
+                        }
+                    </div>
+                </a>
             </div>
             : <a href="/auth">Войти</a>
         }

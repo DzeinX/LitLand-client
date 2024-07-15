@@ -1,4 +1,16 @@
 .book-description {
+    animation: show 0.5s 0.1s ease-in-out;
+}
+
+@keyframes show {
+    from {
+        opacity: 0.5;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
 }
 
@@ -9,6 +21,9 @@
 .title {
     font-size: 1.5rem;
     font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .content {

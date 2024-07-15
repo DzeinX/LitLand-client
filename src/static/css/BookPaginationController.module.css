@@ -1,33 +1,40 @@
 .pagination-controller {
-    background-color: #ccc;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #000;
-    padding: 10px;
+    padding: 10px 10px 40px 10px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #aaa;
 }
 
 .pagination-controller button {
     outline: none;
-    background-color: #ccc;
+    background-color: transparent;
     border: none;
     cursor: pointer;
-    color: #fff;
+    color: #000;
+    font-size: 1.1rem;
+    transition: 0.3s;
 }
 
 .pagination-controller input {
     outline: none;
-    background-color: #ccc;
-    color: #fff;
-    border: 1px solid #fff;
+    border-radius: 10px;
+    color: #000;
+    border: 1px solid #aaa;
+    background-color: transparent;
     padding: 0 5px;
     width: 60px;
+    font-size: 1.1rem;
 }
 
 .pagination-controller button:disabled {
     cursor: not-allowed;
+    color: #aaa;
 }
 
 .page-number {
-    color: #fff;
+    color: #000;
+    font-size: 1.1rem;
 }

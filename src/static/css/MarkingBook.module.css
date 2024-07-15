@@ -1,5 +1,6 @@
 .rating {
     margin-top: 40px;
+    position: relative;
 }
 
 .rating .rating-title .title {
@@ -13,7 +14,7 @@
     font-weight: 100;
 }
 
-.rating .rating-case {
+.rating .rating-case > div {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
@@ -30,7 +31,7 @@
     width: 40px;
     height: 40px;
     border: none;
-    background-color: #fff;
+    background-color: transparent;
 }
 
 .rating .rating-case .rating-form .star:hover {

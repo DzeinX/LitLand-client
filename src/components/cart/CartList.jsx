@@ -14,6 +14,7 @@ export const CartList = ({setCartLength, setFullPrice, setMessage, setTypeMessag
                     setFullPrice={setFullPrice}
                     setMessage={setMessage}
                     setTypeMessage={setTypeMessage}
+                    index={key}
                 />
             })
         }

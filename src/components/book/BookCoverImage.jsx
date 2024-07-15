@@ -15,7 +15,7 @@ export const BookCoverImage = ({book}) => {
     if (error !== undefined) return <div className={styles["fake-image"]}></div>
 
     return <>
-        <img className={styles["image-root"]} src={data} alt="Обложка"/>
+        <img className={styles["image-root"]} src={data} alt="Обложка" height="100%"/>
         {book.isNew ? <div className={styles["is-new"]}>Новинка</div> : null}
     </>
 }

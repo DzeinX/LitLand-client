@@ -26,6 +26,8 @@ export const CartButtons = ({book, setCartLength, setMessage, setTypeMessage}) =
         <a href="/auth">Войдите, чтобы купить</a>
     </div>
 
+    if (book.storageStatus === 0) return null
+
     if (cart === null && !isLoading) return <div className={styles["buttons"]}>
         <FirstInTheCart
             setCart={setCart}

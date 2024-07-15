@@ -20,6 +20,16 @@
     width: 100%;
     margin-bottom: -4px;
     z-index: 9;
+    animation: show 0.5s ease-in-out;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .fake-image {

@@ -24,6 +24,7 @@
 
 .line {
     position: relative;
+    display: flex;
 }
 
 .line::after {
@@ -43,8 +44,44 @@
 .header a {
     color: #444;
     text-decoration: none;
+    animation: show 0.5s ease-in-out;
 }
 
-.header a:hover {
-    border-bottom: 1px solid #444;
+@keyframes show {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.cart {
+    position: relative;
+}
+
+.cart svg:not(.no-absolute) {
+    position: absolute;
+    bottom: -2px;
+    right: -7px;
+    background-color: goldenrod;
+    border-radius: 50%;
+    animation: show 0.2s ease-in-out;
+}
+
+.cart-length {
+    position: absolute;
+    bottom: 0;
+    right: -5px;
+    background-color: goldenrod;
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 50%;
+    width: 13px;
+    height: 13px;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: show 0.2s ease-in-out;
 }

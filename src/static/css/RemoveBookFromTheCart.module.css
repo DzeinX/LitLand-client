@@ -1,8 +1,4 @@
 .remove-all {
-    background-image: url("../img/trash.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     width: 50px;
     height: 100%;
     outline: none;
@@ -10,8 +6,15 @@
     background-color: transparent;
     cursor: pointer;
     transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.remove-all:hover {
-    background-image: url("../img/trash-active.svg");
+.trash-icon {
+    transition: 0.2s;
+}
+
+.trash-icon:hover {
+    fill: #444;
 }

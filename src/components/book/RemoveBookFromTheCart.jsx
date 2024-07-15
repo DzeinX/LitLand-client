@@ -1,8 +1,18 @@
 import {useDispatch, useSelector} from "react-redux"
 import {UpdateCart} from "../../store/reducers/cartReducer"
 import styles from "../../static/css/RemoveBookFromTheCart.module.css"
+import {GoTrash} from "react-icons/go"
+import {IconContext} from "react-icons"
 
-export const RemoveBookFromTheCart = ({hash, setCart, setCartLength, setFullPrice, setMessage, setTypeMessage, setIsLoading}) => {
+export const RemoveBookFromTheCart = ({
+                                          hash,
+                                          setCart,
+                                          setCartLength,
+                                          setFullPrice,
+                                          setMessage,
+                                          setTypeMessage,
+                                          setIsLoading
+                                      }) => {
     const dispatch = useDispatch()
     const cartReducer = useSelector(state => state.cartReducer)
 
@@ -48,5 +58,9 @@ export const RemoveBookFromTheCart = ({hash, setCart, setCartLength, setFullPric
         onClick={removeFromTheCart}
         className={styles["remove-all"]}
         title="Удалить из корзины"
-    ></button>
+    >
+        <IconContext.Provider value={{color: "#aaa", className: styles["trash-icon"]}}>
+            <GoTrash size="40"/>
+        </IconContext.Provider>
+    </button>
 }

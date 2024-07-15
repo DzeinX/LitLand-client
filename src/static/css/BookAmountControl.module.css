@@ -1,4 +1,5 @@
 .book-purchase {
+    --delay: 0s;
     border-radius: 10px;
     border: 1px solid rgba(220, 221, 225, 1.0);
     padding: 10px;
@@ -6,6 +7,19 @@
 
     display: flex;
     justify-content: space-between;
+    animation: show 0.5s var(--delay) ease-in-out;
+}
+
+@keyframes show {
+    from {
+        opacity: 0.5;
+        transform: translateX(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
 }
 
 .image {
@@ -13,7 +27,7 @@
     aspect-ratio: 1/1;
     position: relative;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
 }
 

@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from "react-redux"
 import {UpdateCart} from "../../store/reducers/cartReducer"
 import styles from "../../static/css/AddOneBookInTheCart.module.css"
+import { CiCirclePlus } from "react-icons/ci"
 
 export const AddOneBookInTheCart = ({hash, setCart, setFullPrice, setMessage, setTypeMessage, setIsLoading}) => {
     const dispatch = useDispatch()
@@ -45,5 +46,5 @@ export const AddOneBookInTheCart = ({hash, setCart, setFullPrice, setMessage, se
         onClick={addOne}
         className={styles["add-one"]}
         title="Больше"
-    >+</button>
+    ><CiCirclePlus size="24"/></button>
 }

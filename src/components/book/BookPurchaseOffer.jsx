@@ -4,7 +4,7 @@ import {BookCover} from "./BookCover"
 import {BookStorageStatus} from "./BookStorageStatus"
 import styles from "../../static/css/BookPurchaseOffer.module.css"
 
-export const BookPurchaseOffer = ({book, setCartLength, setMessage, setTypeMessage}) => {
+export const BookPurchaseOffer = ({book, setCartLength, setMessage, setTypeMessage, setBookRating}) => {
     return <div className={styles["purchase-offer"]}>
         <BookCover book={book} size="large"/>
         <BookPurchase
@@ -14,6 +14,6 @@ export const BookPurchaseOffer = ({book, setCartLength, setMessage, setTypeMessa
             setTypeMessage={setTypeMessage}
         />
         <BookStorageStatus book={book} />
-        <MarkingBook book={book} />
+        <MarkingBook book={book} setBookRating={setBookRating}/>
     </div>
 }
